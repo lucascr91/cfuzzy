@@ -3,9 +3,12 @@
 #include<vector>
 #include<algorithm>
 
+#include "utils.h"
+
 typedef std::vector<int>::const_iterator it_vec;
 typedef std::string::iterator it_str;
 typedef std::vector<int>::size_type size_vec;
+
 
 std::vector<std::vector<int>> zero_matrix(int& n, int& m) {
     std::vector<int> l(m,0);
@@ -30,6 +33,8 @@ void print_matrix(const std::vector<std::vector<int>>& m) {
 }
 
 std::vector<std::vector<int>> levenshtein_matrix(std::string& token1, std::string& token2) {
+    std::transform(token1.begin(), token1.end(), token1.begin(), to_lowercase);
+    std::transform(token2.begin(), token2.end(), token2.begin(), to_lowercase);
     int leng1 = token1.size()+1;
     int leng2 = token2.size()+1;
     std::vector<std::vector<int>> distances = zero_matrix(leng1, leng2);
